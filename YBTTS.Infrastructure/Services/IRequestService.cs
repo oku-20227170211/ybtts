@@ -24,4 +24,9 @@ public interface IRequestService
     /// Talep durumu güncelleme
     /// </summary>
     Task<Request?> UpdateStatusAsync(int requestId, RequestStatus status);
+
+    /// <summary>
+    /// Tamamlanan talep için memnuniyet puanı ekleme
+    /// </summary>
+    Task<Request?> SubmitSatisfactionAsync(int requestId, int satisfactionScore);
 }

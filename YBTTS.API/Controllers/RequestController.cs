@@ -39,7 +39,9 @@ public class RequestController : ControllerBase
                 title = request.Title,
                 description = request.Description,
                 status = request.Status.ToString(),
-                createdAt = request.CreatedAt
+                createdAt = request.CreatedAt,
+                completedAt = request.CompletedAt,
+                satisfactionScore = request.SatisfactionScore
             };
 
             return Created(string.Empty, new
@@ -77,7 +79,9 @@ public class RequestController : ControllerBase
                 title = r.Title,
                 description = r.Description,
                 status = r.Status.ToString(),
-                createdAt = r.CreatedAt
+                createdAt = r.CreatedAt,
+                completedAt = r.CompletedAt,
+                satisfactionScore = r.SatisfactionScore
             }).ToList();
 
             return Ok(new
@@ -112,6 +116,8 @@ public class RequestController : ControllerBase
                 description = r.Description,
                 status = r.Status.ToString(),
                 createdAt = r.CreatedAt,
+                completedAt = r.CompletedAt,
+                satisfactionScore = r.SatisfactionScore,
                 student = r.Student != null ? new
                 {
                     id = r.Student.Id,
@@ -157,7 +163,9 @@ public class RequestController : ControllerBase
                 title = request.Title,
                 description = request.Description,
                 status = request.Status.ToString(),
-                createdAt = request.CreatedAt
+                createdAt = request.CreatedAt,
+                completedAt = request.CompletedAt,
+                satisfactionScore = request.SatisfactionScore
             };
 
             return Ok(new
@@ -166,6 +174,52 @@ public class RequestController : ControllerBase
                 message = "Talep durumu başarıyla güncellendi",
                 data = responseData
             });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { success = false, message = "Sunucu hatası", error = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// 5️⃣ Tamamlanan talep için memnuniyet puanı ekleme
+    /// POST /api/requests/{id}/satisfaction
+    /// </summary>
+    [HttpPost("{id}/satisfaction")]
+    public async Task<IActionResult> SubmitSatisfaction(int id, [FromBody] SubmitSatisfactionDto dto)
+    {
+        try
+        {
+            if (dto.SatisfactionScore is < 1 or > 5)
+                return BadRequest(new { success = false, message = "Memnuniyet puanı 1 ile 5 arasında olmalıdır" });
+
+            var request = await _requestService.SubmitSatisfactionAsync(id, dto.SatisfactionScore);
+
+            if (request == null)
+                return NotFound(new { success = false, message = $"Talep ID {id} bulunamadı" });
+
+            var responseData = new
+            {
+                id = request.Id,
+                studentId = request.StudentId,
+                title = request.Title,
+                description = request.Description,
+                status = request.Status.ToString(),
+                createdAt = request.CreatedAt,
+                completedAt = request.CompletedAt,
+                satisfactionScore = request.SatisfactionScore
+            };
+
+            return Ok(new
+            {
+                success = true,
+                message = "Memnuniyet puanı kaydedildi",
+                data = responseData
+            });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { success = false, message = ex.Message });
         }
         catch (Exception ex)
         {
@@ -190,4 +244,12 @@ public class CreateRequestDto
 public class UpdateRequestStatusDto
 {
     public RequestStatus Status { get; set; }
+}
+
+/// <summary>
+/// Memnuniyet puanı girme DTO
+/// </summary>
+public class SubmitSatisfactionDto
+{
+    public int SatisfactionScore { get; set; }
 }

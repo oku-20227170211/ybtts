@@ -7,6 +7,39 @@
   color: #2c3e50;
 }
 
+.gamification-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+}
+
+.stat-label {
+  font-size: 14px;
+  opacity: 0.85;
+  margin: 0 0 6px 0;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.stat-subtitle {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
 .requests-table {
   width: 100%;
   border-collapse: collapse;
@@ -31,4 +64,84 @@
 
 .requests-table tbody tr:hover {
   background-color: #f8f9fa;
+}
+
+.error-message {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  padding: 10px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.rating-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.rating-input select,
+.rating-input button {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  background: white;
+  cursor: pointer;
+}
+
+.rating-input button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+}
+
+.rating-input button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.rating-readonly {
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.leaderboard {
+  margin-top: 20px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.leaderboard-table th {
+  background: #0f172a;
+  color: white;
+  font-weight: 600;
+}
+
+.leaderboard-table tbody tr:nth-child(odd) {
+  background: #f8fafc;
+}
+
+.leader-name {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.leader-subtext {
+  font-size: 12px;
+  color: #6b7280;
 }

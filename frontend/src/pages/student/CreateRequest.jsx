@@ -34,7 +34,7 @@ function CreateRequest() {
       })
       
       console.log('Talep başarıyla oluşturuldu')
-      navigate('/student/requests')
+      navigate('/student')
     } catch (err) {
       console.error('Talep oluşturma hatası:', err)
       setError(err?.response?.data?.message || 'Talep oluşturulamadı')

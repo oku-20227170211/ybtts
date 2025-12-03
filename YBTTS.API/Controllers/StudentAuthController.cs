@@ -23,7 +23,14 @@ public class StudentAuthController : ControllerBase
         return Ok(new
         {
             success = true,
-            student
+            student = new
+            {
+                id = student.Id,
+                fullName = student.FullName,
+                studentNumber = student.StudentNumber,
+                points = student.Points,
+                level = student.Level
+            }
         });
     }
 }

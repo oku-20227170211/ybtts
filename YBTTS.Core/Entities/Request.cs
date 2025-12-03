@@ -10,6 +10,8 @@ public class Request
     public string Description { get; set; } = string.Empty;
     public RequestStatus Status { get; set; } = RequestStatus.Pending;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime? CompletedAt { get; set; }
+    public int? SatisfactionScore { get; set; }
     
     // Navigation property
     public Student? Student { get; set; }
