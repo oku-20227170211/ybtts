@@ -8,7 +8,7 @@ public interface IRequestService
     /// <summary>
     /// Öğrenci tarafından yeni talep oluşturma
     /// </summary>
-    Task<Request> CreateAsync(int studentId, string title, string description, string roomNo );
+    Task<Request> CreateAsync(int studentId, string title, string description, string roomNo="" );
 
     /// <summary>
     /// Öğrencinin kendi taleplerini getirme

@@ -96,7 +96,3 @@ export const setPending = async (requestId: number) => {
   return response.data;
 };
 
-export const deleteRequest = async (requestId: number) => {
-  const response = await api.delete(`/api/requests/${requestId}`);
-  return response.data;
-};

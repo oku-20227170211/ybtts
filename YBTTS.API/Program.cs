@@ -17,9 +17,14 @@ builder.Services.AddDbContext<YbttsDbContext>(options =>
 
 builder.Services.AddScoped<StudentAuthService>();
 builder.Services.AddScoped<AuthService>();
+
 builder.Services.AddScoped<StudentService>();
 builder.Services.AddScoped<IRequestService, RequestService>();
 
+builder.Services.AddScoped<IGamificationService, GamificationService>();
+builder.Services.AddScoped<IFeedbackService, FeedbackService>();
+builder.Services.AddScoped<IMaintenanceStaffService, MaintenanceStaffService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
