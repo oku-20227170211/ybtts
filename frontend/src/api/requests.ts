@@ -66,3 +66,37 @@ export const updateStatus = async (
   const response = await api.put(`/api/requests/${requestId}`, { status });
   return response.data.data;
 };
+
+/**
+ * Talebi onayla (Admin)
+ */
+export const approveRequest = async (requestId: number): Promise<Request> => {
+  const response = await api.put(`/api/requests/${requestId}/approve`);
+  return response.data.data;
+};
+
+/**
+ * Talebi reddet (Admin)
+ */
+export const rejectRequest = async (requestId: number): Promise<Request> => {
+  const response = await api.put(`/api/requests/${requestId}/reject`);
+  return response.data.data;
+};
+
+/**
+ * Talebi sil (Admin)
+ */
+export const deleteRequest = async (requestId: number): Promise<boolean> => {
+  const response = await api.delete(`/api/requests/${requestId}`);
+  return response.data.success;
+};
+
+export const setPending = async (requestId: number) => {
+  const response = await api.put(`/api/requests/${requestId}/pending`);
+  return response.data;
+};
+
+export const deleteRequest = async (requestId: number) => {
+  const response = await api.delete(`/api/requests/${requestId}`);
+  return response.data;
+};

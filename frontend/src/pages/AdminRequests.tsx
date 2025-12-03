@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import * as requestsApi from "../api/requests";
 import type { Request } from "../api/requests";
+import { 
+  getAllRequests, 
+  approveRequest, 
+  rejectRequest, 
+  deleteRequest 
+} from "../api/requests";
+
 
 const AdminRequests: React.FC = () => {
   const [requests, setRequests] = useState<Request[]>([]);
@@ -8,6 +15,7 @@ const AdminRequests: React.FC = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [updatingId, setUpdatingId] = useState<number | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   // Tüm talepleri yükle
   const fetchRequests = async () => {
@@ -29,33 +37,64 @@ const AdminRequests: React.FC = () => {
     fetchRequests();
   }, []);
 
+
+  const handleDelete = async (requestId: number) => {
+  if (!confirm("Bu talebi silmek istediğinize emin misiniz?")) return;
+
+  setDeletingId(requestId);
+  setError("");
+
+  try {
+    await requestsApi.deleteRequest(requestId);
+
+    setRequests((prev) => prev.filter((req) => req.id !== requestId));
+
+    setSuccess("Talep başarıyla silindi.");
+    setTimeout(() => setSuccess(""), 2000);
+  } catch (err: any) {
+    setError(err?.response?.data?.message || "Talep silinirken hata oluştu");
+  } finally {
+    setDeletingId(null);
+  }
+};
+
+
   // Talep durumu güncelle
   const handleStatusChange = async (
-    requestId: number,
-    newStatus: "Pending" | "Approved" | "Rejected"
-  ) => {
-    setUpdatingId(requestId);
-    setError("");
+  requestId: number,
+  newStatus: "Pending" | "Approved" | "Rejected"
+) => {
+  setUpdatingId(requestId);
+  setError("");
 
-    try {
+  try {
+    if (newStatus === "Approved") {
+      await approveRequest(requestId);
+    } else if (newStatus === "Rejected") {
+      await rejectRequest(requestId);
+    } else {
+      // Pending’e dönme endpoint'in yok → backend yazılabilir
       await requestsApi.updateStatus(requestId, newStatus);
-
-      // Local state'i güncelle
-      setRequests((prevRequests) =>
-        prevRequests.map((req) =>
-          req.id === requestId ? { ...req, status: newStatus } : req
-        )
-      );
-
-      setSuccess("Talep durumu güncellendi");
-      setTimeout(() => setSuccess(""), 3000);
-    } catch (err: any) {
-      setError(err?.response?.data?.message || "Sunucu hatası");
-      console.error("Error updating request status:", err);
-    } finally {
-      setUpdatingId(null);
     }
-  };
+
+    // UI güncelle
+    setRequests((prev) =>
+      prev.map((req) =>
+        req.id === requestId ? { ...req, status: newStatus } : req
+      )
+    );
+
+    setSuccess("Talep durumu güncellendi");
+    setTimeout(() => setSuccess(""), 1500);
+
+  } catch (err: any) {
+    console.error(err);
+    setError(err?.response?.data?.message || "Sunucu hatası");
+  } finally {
+    setUpdatingId(null);
+  }
+};
+
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {
@@ -169,25 +208,36 @@ const AdminRequests: React.FC = () => {
                     <td className="px-6 py-4 text-gray-400">
                       {formatDate(request.createdAt)}
                     </td>
-                    <td className="px-6 py-4">
-                      <select
-                        value={request.status}
-                        onChange={(e) =>
-                          handleStatusChange(
-                            request.id,
-                            e.target.value as "Pending" | "Approved" | "Rejected"
-                          )
-                        }
-                        disabled={updatingId === request.id}
-                        className={`px-3 py-2 rounded-lg font-semibold border-2 cursor-pointer transition ${getStatusDropdownColor(
-                          request.status
-                        )} text-gray-900 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed`}
-                      >
-                        <option value="Pending">Bekleniyor</option>
-                        <option value="Approved">Onaylandı</option>
-                        <option value="Rejected">Reddedildi</option>
-                      </select>
-                    </td>
+<td className="px-6 py-4">
+
+  <select
+    value={request.status}
+    onChange={(e) =>
+      handleStatusChange(
+        request.id,
+        e.target.value as "Pending" | "Approved" | "Rejected"
+      )
+    }
+    disabled={updatingId === request.id}
+    className={`px-3 py-2 rounded-lg font-semibold border-2 cursor-pointer transition 
+      ${getStatusDropdownColor(request.status)} 
+      text-gray-900 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed`}
+  >
+    <option value="Pending">Bekleniyor</option>
+    <option value="Approved">Onaylandı</option>
+    <option value="Rejected">Reddedildi</option>
+  </select>
+
+  <button
+    onClick={() => handleDelete(request.id)}
+    disabled={deletingId === request.id}
+    className="ml-3 px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg transition disabled:opacity-50"
+  >
+    {deletingId === request.id ? "Siliniyor..." : "Sil"}
+  </button>
+
+</td>
+
                   </tr>
                 ))}
               </tbody>

@@ -10,3 +10,4 @@
 /home/kalender/ybtts/YBTTS.Core/obj/Debug/net9.0/refint/YBTTS.Core.dll
 /home/kalender/ybtts/YBTTS.Core/obj/Debug/net9.0/YBTTS.Core.pdb
 /home/kalender/ybtts/YBTTS.Core/obj/Debug/net9.0/ref/YBTTS.Core.dll
+/home/kalender/ybtts/YBTTS.Core/obj/Debug/net9.0/YBTTS.Core.sourcelink.json

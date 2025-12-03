@@ -15,6 +15,8 @@ public class RequestController : ControllerBase
         _requestService = requestService;
     }
 
+
+
     /// <summary>
     /// 1️⃣ Öğrenci talep oluşturma
     /// POST /api/requests
@@ -30,7 +32,7 @@ public class RequestController : ControllerBase
             if (string.IsNullOrWhiteSpace(dto.Title) || string.IsNullOrWhiteSpace(dto.Description))
                 return BadRequest(new { success = false, message = "Başlık ve açıklama gereklidir" });
 
-            var request = await _requestService.CreateAsync(dto.StudentId, dto.Title, dto.Description);
+            var request = await _requestService.CreateAsync(dto.StudentId, dto.Title, dto.Description, dto.RoomNo);
 
             var responseData = new
             {
@@ -38,14 +40,23 @@ public class RequestController : ControllerBase
                 studentId = request.StudentId,
                 title = request.Title,
                 description = request.Description,
+                roomNo = request.RoomNo,
                 status = request.Status.ToString(),
-                createdAt = request.CreatedAt
+                createdAt = request.CreatedAt,
+                completedAt = request.CompletedAt,
+                   assignedToStaffId = request.AssignedToStaffId,
+                   student = request.Student != null ? new
+                {
+                    id = request.Student.Id,
+                    fullName = request.Student.FullName,
+                    studentNumber = request.Student.StudentNumber
+                } : null
             };
 
             return Created(string.Empty, new
             {
                 success = true,
-                message = "Talep başarıyla oluşturuldu",
+                message = "Talep başarıyla oluşturuldu. +10 puan kazandınız!",
                 data = responseData
             });
         }
@@ -57,8 +68,7 @@ public class RequestController : ControllerBase
         {
             return StatusCode(500, new { success = false, message = "Sunucu hatası", error = ex.Message });
         }
-    }
-
+        }
     /// <summary>
     /// 2️⃣ Öğrencinin kendi taleplerini listeleme
     /// GET /api/requests/student/{studentId}
@@ -171,7 +181,12 @@ public class RequestController : ControllerBase
         {
             return StatusCode(500, new { success = false, message = "Sunucu hatası", error = ex.Message });
         }
+
+
+        
     }
+
+    
 }
 
 /// <summary>
@@ -182,8 +197,13 @@ public class CreateRequestDto
     public int StudentId { get; set; }
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
+    public string RoomNo { get; set; } = string.Empty;
 }
 
+public class AssignRequestDto
+{
+    public int StaffId { get; set; }
+}
 /// <summary>
 /// Talep durumu güncelleme DTO
 /// </summary>

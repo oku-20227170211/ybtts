@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("YBTTS.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69270673a50c4a7b5b0a9fe050d8fd6f6258e129")]
 [assembly: System.Reflection.AssemblyProductAttribute("YBTTS.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("YBTTS.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

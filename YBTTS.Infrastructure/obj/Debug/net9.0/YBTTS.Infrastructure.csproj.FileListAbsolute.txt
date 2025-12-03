@@ -15,3 +15,4 @@
 /home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.pdb
 /home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.genruntimeconfig.cache
 /home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/ref/YBTTS.Infrastructure.dll
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.sourcelink.json

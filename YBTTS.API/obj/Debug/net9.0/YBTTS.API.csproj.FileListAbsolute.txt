@@ -125,3 +125,4 @@
 /home/kalender/ybtts/YBTTS.API/obj/Debug/net9.0/YBTTS.API.pdb
 /home/kalender/ybtts/YBTTS.API/obj/Debug/net9.0/YBTTS.API.genruntimeconfig.cache
 /home/kalender/ybtts/YBTTS.API/obj/Debug/net9.0/ref/YBTTS.API.dll
+/home/kalender/ybtts/YBTTS.API/obj/Debug/net9.0/YBTTS.API.sourcelink.json

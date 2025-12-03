@@ -8,7 +8,7 @@ public interface IRequestService
     /// <summary>
     /// Öğrenci tarafından yeni talep oluşturma
     /// </summary>
-    Task<Request> CreateAsync(int studentId, string title, string description);
+    Task<Request> CreateAsync(int studentId, string title, string description, string roomNo );
 
     /// <summary>
     /// Öğrencinin kendi taleplerini getirme
@@ -24,4 +24,19 @@ public interface IRequestService
     /// Talep durumu güncelleme
     /// </summary>
     Task<Request?> UpdateStatusAsync(int requestId, RequestStatus status);
+
+    /// <summary>
+    /// Talebi bakım personeline atama
+    /// </summary>
+    Task<Request?> AssignToStaffAsync(int requestId, int staffId);
+
+    /// <summary>
+    /// Talebi tamamlama
+    /// </summary>
+    Task<Request?> CompleteRequestAsync(int requestId, int staffId);
+
+    /// <summary>
+    /// Talebi işleme alma
+    /// </summary>
+    Task<Request?> StartProgressAsync(int requestId, int staffId);
 }
