@@ -1,0 +1,51 @@
+.create-request-container {
+  max-width: 600px;
+}
+
+.create-request-container h1 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.create-request-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.create-request-container input,
+.create-request-container textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.create-request-container button {
+  padding: 12px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-request-container button:hover:not(:disabled) {
+  background-color: #229954;
+}
+
+.create-request-container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  border: 1px solid #f5c6cb;
+}

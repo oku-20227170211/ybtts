@@ -1,0 +1,47 @@
+.student-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.student-header {
+  background-color: #3498db;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.student-header h1 {
+  font-size: 24px;
+}
+
+.student-header nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.student-header a,
+.student-header button {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+
+.student-header a:hover,
+.student-header button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.student-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}

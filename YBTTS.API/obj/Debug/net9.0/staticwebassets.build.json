@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "rykungPdjqeK8q1TTm1X2RLRnIbpiLGyO0kqe927Dd4=",
+  "Source": "YBTTS.API",
+  "BasePath": "_content/YBTTS.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

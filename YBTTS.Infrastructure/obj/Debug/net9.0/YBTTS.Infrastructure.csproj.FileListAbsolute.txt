@@ -1,0 +1,17 @@
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.csproj.AssemblyReference.cache
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.AssemblyInfoInputs.cache
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.AssemblyInfo.cs
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.csproj.CoreCompileInputs.cache
+/home/kalender/ybtts/YBTTS.Infrastructure/bin/Debug/net9.0/YBTTS.Infrastructure.deps.json
+/home/kalender/ybtts/YBTTS.Infrastructure/bin/Debug/net9.0/YBTTS.Infrastructure.runtimeconfig.json
+/home/kalender/ybtts/YBTTS.Infrastructure/bin/Debug/net9.0/YBTTS.Infrastructure.dll
+/home/kalender/ybtts/YBTTS.Infrastructure/bin/Debug/net9.0/YBTTS.Infrastructure.pdb
+/home/kalender/ybtts/YBTTS.Infrastructure/bin/Debug/net9.0/YBTTS.Core.dll
+/home/kalender/ybtts/YBTTS.Infrastructure/bin/Debug/net9.0/YBTTS.Core.pdb
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.In.07D68366.Up2Date
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.dll
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/refint/YBTTS.Infrastructure.dll
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.pdb
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/YBTTS.Infrastructure.genruntimeconfig.cache
+/home/kalender/ybtts/YBTTS.Infrastructure/obj/Debug/net9.0/ref/YBTTS.Infrastructure.dll
