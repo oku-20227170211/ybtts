@@ -7,32 +7,31 @@ import StudentDashboard from "./pages/StudentDashboard";
 import StudentRequests from "./pages/StudentRequests";
 import { useAuth } from "./context/AuthContext";
 
-const RequireAuth: React.FC<{ children: React.ReactNode; allowedRole?: "Admin" | "Student" }> = ({ children, allowedRole }) => {
+const RequireAuth: React.FC<{ children: React.ReactNode; role?: string }> = ({ children, role }) => {
   const { state } = useAuth();
 
-  if (!state.user) {
-    return <Navigate to="/login" replace />;
-  }
+  if (!state.user) return <Navigate to="/login" replace />;
 
-  if (allowedRole && state.user.role !== allowedRole) {
+  if (role && state.user.role !== role) {
     return <Navigate to="/login" replace />;
   }
 
   return <>{children}</>;
 };
 
-
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
+          {/* Login */}
           <Route path="/login" element={<Login />} />
 
+          {/* ADMIN */}
           <Route
             path="/admin"
             element={
-              <RequireAuth allowedRole="Admin">
+              <RequireAuth role="Admin">
                 <AdminDashboard />
               </RequireAuth>
             }
@@ -41,30 +40,32 @@ function App() {
           <Route
             path="/admin/requests"
             element={
-              <RequireAuth allowedRole="Admin">
+              <RequireAuth role="Admin">
                 <AdminRequests />
               </RequireAuth>
             }
           />
 
+          {/* STUDENT */}
           <Route
             path="/student"
             element={
-              <RequireAuth allowedRole="Student">
+              <RequireAuth role="Student">
                 <StudentDashboard />
               </RequireAuth>
             }
           />
 
           <Route
-            path="/student/"
+            path="/student/requests"
             element={
-              <RequireAuth allowedRole="Student">
+              <RequireAuth role="Student">
                 <StudentRequests />
               </RequireAuth>
             }
           />
 
+          {/* Default */}
           <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
